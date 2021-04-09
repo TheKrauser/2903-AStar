@@ -50,6 +50,14 @@ public class FollowPath : MonoBehaviour
         currentWP = 0;
     }
 
+    //Ir até a Usina
+    public void GoToFactory()
+    {
+        //Calcula o caminho do nó atual até o da posição 6 do Array
+        g.AStar(currentNode, wps[4]);
+        currentWP = 0;
+    }
+
     void LateUpdate()
     {
         //Se o tamanho da Lista dos nós for igual a zero não faça nada, pois não haverá para onde o Player se mover
