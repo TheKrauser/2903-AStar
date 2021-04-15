@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FollowPath : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class FollowPath : MonoBehaviour
     int currentWP = 0;
     //Váriavel do Graph
     Graph g;
+    //Variável do Navmesh
+    private NavMeshAgent agent;
 
     void Start()
     {
@@ -32,6 +35,8 @@ public class FollowPath : MonoBehaviour
         g = wpManager.GetComponent<WPManager>().graph;
         //Nó atual é igual a posição 0 do Array de Waypoints
         currentNode = wps[0];
+	//Pegar o Componente do NavMeshAgent
+	agent = GetComponent<NavMeshAgent>();
     }
 
     //Ir até o Heliporto
@@ -89,6 +94,6 @@ public class FollowPath : MonoBehaviour
         }
 
         //Move o Player
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        agent.SetDestination(goal.transform.position);
     }
 }
